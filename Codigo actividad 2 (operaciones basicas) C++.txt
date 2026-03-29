@@ -1,0 +1,33 @@
+/******************************************************************************
+Autor : Erik Alberto Olivares Quijas
+Fecha : 26/03/2026
+Descripcion: En este codigo se desarrollara que el programa pida ingresar
+2 valores numericos y con esos 2 valores realizar las operaciones basicas entre 
+ellos como lo es la suma, resta, multiplicacion y division.
+                              
+*******************************************************************************/
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    float num1, num2;
+    
+    cout << "Ingresa el primer numero: ";
+    cin >> num1;
+    
+    cout << "Ingresa el segundo numero: ";
+    cin >> num2;
+    
+    cout << "La suma es igual a: " << num1 + num2 << endl;
+    cout << "La resta es igual a: " << num1 - num2 << endl;
+    cout << "La multiplicacion es igual a: " << num1 * num2 << endl;
+    
+    if (num2 != 0) {
+        cout << "La division es igual a: " << num1 / num2 << endl;
+    } else {
+        cout << "Lo siento no se puede dividir entre cero." << endl;
+    }
+
+    return 0;
+}
