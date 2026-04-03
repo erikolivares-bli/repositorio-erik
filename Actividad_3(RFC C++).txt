@@ -1,0 +1,92 @@
+/******************************************************************************
+Autor: Erik Alberto Olivares Quijas
+Fecha: 30/03/2026
+Descripcion: Este codigo sera capaz de realizar el RFC del nombre del usuario
+ingresado junto con su fecha de nacimiento. 
+
+*******************************************************************************/
+
+#include <iostream>
+#include <string>
+#include <cctype>
+using namespace std;
+
+class Persona {
+    private:
+    string nombre, apPaterno, apMaterno;
+    int dia, mes, anio;
+    
+    public:
+    void capturar(){
+        cout << "Ingresa tu Nombre: ";
+        cin >> nombre;
+        
+        cout << "Tu apellido paterno: ";
+        cin >> apPaterno;
+        
+        cout << "Tu apellido materno (de no tener escribe X): ";
+        cin >> apMaterno;
+        
+        cout << "Dia de nacimiento: ";
+        cin >> dia;
+        
+        cout << "Mes de nacimiento: ";
+        cin >> mes;
+        
+        cout << "Año de nacimiento: ";
+        cin >> anio;
+        
+    }
+    
+    char obtenerVocal(string palabra){
+        for (int i = 1; i < palabra.length(); i++){
+            char c = toupper (palabra[i]);
+            if (c=='A'||c== 'E'||c== 'I'||c=='O'||c=='U'){
+                return c;
+            }
+        }
+        return 'X';
+    }
+    
+    string generarRFC(){
+        string rfc = "";
+        
+        // 1 y 2 
+        rfc += toupper(apPaterno[0]);
+        rfc += obtenerVocal(apPaterno);
+        
+        // 3
+        if (apMaterno != "X")
+        rfc += toupper(apMaterno[0]);
+        else
+        rfc += 'X';
+        
+        // 4 
+        rfc += toupper(nombre[0]);
+        
+        // 5 y 6 (año)
+        rfc += to_string(anio).substr(2,2);
+        
+        // 7 y 8 (mes)
+        if (mes < 10) rfc += "0";
+        rfc += to_string(mes);
+        
+        // 9 y 10 (dia)
+        if (dia < 10) rfc += "0";
+        rfc += to_string(dia);
+        
+        return rfc;
+    }
+     
+    
+};
+
+int main(){
+    Persona p;
+    
+    p.capturar();
+    
+    cout << "Su RFC es: " << p.generarRFC() << endl;
+    
+    return 0;
+}
